@@ -11,11 +11,11 @@ function Homepage() {
       <p>phonebook</p>
       <h3>
         <Link to={`registration`} state={{ from: location }}>
-          SignUp
+          <button type="button">SignUp</button>
         </Link>{" "}
         or{" "}
         <Link to={`LogIn`} state={{ from: location }}>
-          LogIn
+        <button type="button">LogIn</button>
         </Link>
       </h3>
     </HomePageBody>

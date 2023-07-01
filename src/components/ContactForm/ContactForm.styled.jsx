@@ -26,7 +26,7 @@ export const ButtonSub = styled.button`
   margin-top: 5px;
   margin-bottom: 30px;
   margin: 0 auto;
-  width: 232px;
+  width: 242px;
   border: 1px solid rgba(172, 183, 192, 0.3);
   box-shadow: 0px 1px 1px rgba(172, 183, 192, 0.12),
     0px 4px 4px rgba(172, 183, 192, 0.06), 1px 4px 6px rgba(172, 183, 192, 0.16);

@@ -1,4 +1,4 @@
-import { authReducer } from './authSlice';
+import { authReducer } from './auth/authSlice';
 import { contactsReducer } from './contactsSlice';
 import { filterReducer } from './filterSlice';
 

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import ContactItem from "components/ContactItem/ContactItem";
 import { List } from "../Contacts/Contacts.styled";
 import { useEffect } from "react";
-import { getContactThunk } from "redux/thunk";
+import { getContactThunk } from "redux/auth/thunk";
 import {
   selectContacts,
   selectError,
   selectFilter,
+  selectIsAuth,
   selectIsLoading,
 } from "redux/selectors";
 
@@ -16,13 +17,16 @@ function ContactsList() {
 
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
+  const isAuth = useSelector(selectIsAuth);
 
   const items = useSelector(selectContacts);
   const { filter } = useSelector(selectFilter);
 
   useEffect(() => {
+    if(!isAuth) return;
+
     dispatch(getContactThunk());
-  }, [dispatch]);
+  }, [isAuth, dispatch]);
 
   return (
     <div>

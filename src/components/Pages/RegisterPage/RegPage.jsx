@@ -1,5 +1,9 @@
-// import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpThunk } from "redux/auth/thunk";
+
 import {
   Container,
   ContactFild,
@@ -7,14 +11,14 @@ import {
   ButtonSub,
 } from "../../ContactForm/ContactForm.styled";
 import { HomePageBody } from "../Homepage/Homepage.styled";
+import { selectIsAuth } from "redux/selectors";
 
-import { signUp } from "redux/services";
-import { useNavigate } from "react-router-dom";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
+
 
 function RegForm() {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -35,25 +39,24 @@ function RegForm() {
     }
   };
 
+  useEffect(() => {
+    isAuth && navigate("/phonebook");
+    isAuth && Notify.success("Auth successful");
+  }, [isAuth, navigate]);
+
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    console.log({ name, email, password });
-    //   dispatch(loginUser({ name: userName, number: password }));
+    dispatch(
+      signUpThunk({
+        name,
+        email,
+        password,
+      })
+    ).unwrap().then(() => {
+      Notify.success("Successful registration");
 
-    signUp({
-      name,
-      email,
-      password,
-    }).then(() => {
-      Notify.success('Successful registration');
-      Notify.success('Enter your e-mail and password');
-      navigate("/login");
-      
+      navigate("/phonebook");
     });
-    
-    // setName("");
-    // setEmail("");
-    // setPassword("");
   };
 
   return (
@@ -97,11 +100,11 @@ function RegForm() {
               required
             />
           </ContactLabel>
-          <ButtonSub type="submit">Registration</ButtonSub>
+          <ButtonSub type="submit" disabled={!email || !password}>
+            Registration
+          </ButtonSub>
         </Container>
       </form>
-     
-      
     </HomePageBody>
   );
 }

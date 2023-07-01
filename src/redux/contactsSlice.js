@@ -2,7 +2,7 @@ import {
   getContactThunk,
   createContactThunk,
   deleteContactThunk,
-} from "./thunk";
+} from "./auth/thunk";
 
 import { createSlice } from "@reduxjs/toolkit";
 // import { initialState } from "./initialState";
@@ -24,19 +24,15 @@ const handlePending = (state) => {
 const handleFulfilledGet = (state, { payload }) => {
   state.contacts.isLoading = false;
   state.contacts.items = payload;
-  state.contacts.error = null;
 };
 
 const handleFulfilledCreate = (state, { payload }) => {
   state.contacts.isLoading = false;
   state.contacts.items.push(payload);
-  state.contacts.error = null;
 };
 
 const handleFulfilledDel = (state, { payload }) => {
   state.contacts.isLoading = false;
-
-  state.contacts.error = null;
 
   const index = state.contacts.items.findIndex(
     (contact) => contact.id === payload
@@ -44,6 +40,7 @@ const handleFulfilledDel = (state, { payload }) => {
   if (index !== -1) {
     state.contacts.items.splice(index, 1);
   }
+  
   // state.contacts.items = state.contacts.items.filter(contact => contact.id !== payload)
 };
 

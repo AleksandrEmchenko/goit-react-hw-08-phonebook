@@ -7,7 +7,7 @@ import {
   ButtonSub,
 } from "./ContactForm.styled";
 import { useState } from "react";
-import { createContactThunk } from "redux/thunk";
+import { createContactThunk } from "redux/auth/thunk";
 
 function ContactForm() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function ContactForm() {
   const handleSubmitForm = (event) => {
     event.preventDefault();
 
-    dispatch(createContactThunk({ name: name, number: number }));
+    dispatch(createContactThunk({ name, number }));
     setName("");
     setNumber("");
   };
