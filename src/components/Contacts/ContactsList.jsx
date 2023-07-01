@@ -23,7 +23,7 @@ function ContactsList() {
   const { filter } = useSelector(selectFilter);
 
   useEffect(() => {
-    if(!isAuth) return;
+    if (!isAuth) return;
 
     dispatch(getContactThunk());
   }, [isAuth, dispatch]);

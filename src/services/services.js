@@ -5,7 +5,8 @@ const instance = axios.create({
 });
 
 const authInterceptor = (config) => {
-  config.headers["Authorization"] = JSON.parse(localStorage.getItem("token")) ?? "";
+  config.headers["Authorization"] =
+    JSON.parse(localStorage.getItem("token")) ?? "";
   return config;
 };
 

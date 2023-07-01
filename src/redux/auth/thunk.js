@@ -45,16 +45,13 @@ export const deleteContactThunk = createAsyncThunk(
     }
   }
 );
-////////
 export const signUpThunk = createAsyncThunk(
   "users/signUp",
   async (body, { rejectWithValue, dispatch }) => {
     try {
       const data = await signUp(body);
-      // dispatch(signUp());
       return data;
     } catch (error) {
-      // return error
       return rejectWithValue(error.response.data.message);
     }
   }

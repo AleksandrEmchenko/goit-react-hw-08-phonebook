@@ -5,7 +5,6 @@ import {
 } from "./auth/thunk";
 
 import { createSlice } from "@reduxjs/toolkit";
-// import { initialState } from "./initialState";
 
 const initialState = {
   contacts: {
@@ -40,7 +39,7 @@ const handleFulfilledDel = (state, { payload }) => {
   if (index !== -1) {
     state.contacts.items.splice(index, 1);
   }
-  
+
   // state.contacts.items = state.contacts.items.filter(contact => contact.id !== payload)
 };
 
@@ -69,6 +68,3 @@ export const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-
-

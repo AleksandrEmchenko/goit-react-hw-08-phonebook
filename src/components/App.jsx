@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 
-// import { useSelector } from "react-redux";
 import Homepage from "./Pages/Homepage/Homepage";
 import LoginForm from "./Pages/LogIn/LogInForm";
 import RegForm from "./Pages/RegisterPage/RegPage";
@@ -12,7 +11,6 @@ import { getProfileThunk } from "redux/auth/thunk";
 
 function App() {
   const dispatch = useDispatch();
-  // const isLoading = useSelector((store) => store.contacts.contacts.loading);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));

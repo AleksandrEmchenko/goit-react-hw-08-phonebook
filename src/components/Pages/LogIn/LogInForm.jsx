@@ -5,13 +5,12 @@ import {
   Container,
   ContactFild,
   ContactLabel,
-  ButtonSub,
 } from "../../ContactForm/ContactForm.styled";
-// import { login } from "redux/services";
 import { loginThunk } from "redux/auth/thunk";
 import { useNavigate } from "react-router-dom";
 import { Notify } from "notiflix";
 import { selectIsAuth } from "redux/selectors";
+import { LogBtn } from "./LogInForm.styled";
 
 function LoginForm() {
   const isAuth = useSelector(selectIsAuth);
@@ -79,9 +78,9 @@ function LoginForm() {
               required
             />
           </ContactLabel>
-          <ButtonSub type="submit" disabled={!email || !password}>
+          <LogBtn type="submit" disabled={!email || !password}>
             LogIn
-          </ButtonSub>
+          </LogBtn>
         </Container>
       </form>
     </HomePageBody>

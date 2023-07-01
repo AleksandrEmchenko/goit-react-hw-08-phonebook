@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { NavHeader } from "./Layout.styled";
+import { NavHeader, MenuButton } from "./Layout.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsAuth } from "redux/selectors";
 import { logOutThunk } from "redux/auth/thunk";
@@ -18,13 +18,21 @@ function Layout() {
       <header>
         <nav>
           <NavHeader>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/">
+              <MenuButton type="button">Home</MenuButton>
+            </NavLink>
             {isAuth ? (
-              <button onClick={handleLogOut}>LogOut</button>
+              <MenuButton onClick={handleLogOut}>LogOut</MenuButton>
             ) : (
               <>
-                <NavLink to="/registration">Registration</NavLink>
-                <NavLink to="/logIn">LogIn</NavLink>
+                <NavLink to="/registration">
+                  {" "}
+                  <MenuButton type="button">Registration</MenuButton>
+                </NavLink>
+                <NavLink to="/logIn">
+                  {" "}
+                  <MenuButton type="button">LogIn</MenuButton>
+                </NavLink>
               </>
             )}
           </NavHeader>

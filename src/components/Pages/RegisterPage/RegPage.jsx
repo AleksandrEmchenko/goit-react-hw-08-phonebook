@@ -8,12 +8,10 @@ import {
   Container,
   ContactFild,
   ContactLabel,
-  ButtonSub,
 } from "../../ContactForm/ContactForm.styled";
 import { HomePageBody } from "../Homepage/Homepage.styled";
 import { selectIsAuth } from "redux/selectors";
-
-
+import { RegBtn } from "./RegPage.styled";
 
 function RegForm() {
   const navigate = useNavigate();
@@ -52,11 +50,13 @@ function RegForm() {
         email,
         password,
       })
-    ).unwrap().then(() => {
-      Notify.success("Successful registration");
+    )
+      .unwrap()
+      .then(() => {
+        Notify.success("Successful registration");
 
-      navigate("/phonebook");
-    });
+        navigate("/phonebook");
+      });
   };
 
   return (
@@ -100,9 +100,9 @@ function RegForm() {
               required
             />
           </ContactLabel>
-          <ButtonSub type="submit" disabled={!email || !password}>
+          <RegBtn type="submit" disabled={!email || !password}>
             Registration
-          </ButtonSub>
+          </RegBtn>
         </Container>
       </form>
     </HomePageBody>

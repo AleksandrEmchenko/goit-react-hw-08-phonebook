@@ -1,21 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { HomePageBody } from "./Homepage.styled";
+import { HomePageBody, AuthBtn } from "./Homepage.styled";
 
 function Homepage() {
   const location = useLocation();
   return (
     <HomePageBody>
-      <h2>Welcome</h2>
-      <p>to</p>
-      <p>phonebook</p>
+      <p>
+        WELCOME
+        <br />
+        to
+        <br />
+        phonebook
+      </p>
       <h3>
         <Link to={`registration`} state={{ from: location }}>
-          <button type="button">SignUp</button>
+          <AuthBtn type="button">SignUp</AuthBtn>
         </Link>{" "}
         or{" "}
         <Link to={`LogIn`} state={{ from: location }}>
-        <button type="button">LogIn</button>
+          <AuthBtn type="button">LogIn</AuthBtn>
         </Link>
       </h3>
     </HomePageBody>
